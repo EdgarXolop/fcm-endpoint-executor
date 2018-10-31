@@ -7,8 +7,6 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://<project>.firebaseio.com"
 });
-var registrationToken = "";//your registration token
-
 var message = {
     notification:{
         title: 'Hola',
@@ -17,7 +15,7 @@ var message = {
     data:{
         msg:'puta vida pero mas puto Kevin con K'
     },
-    token: registrationToken
+    topic: 'news'
 }
 
 
