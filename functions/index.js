@@ -1,7 +1,11 @@
 const functions = require('firebase-functions');
+const crednetials = require('./credentials.json')
 var admin = require("firebase-admin");
 
-admin.initializeApp();
+admin.initializeApp({
+    credential: admin.credential.cert(crednetials),
+    databaseURL: "https://arqui2umg.firebaseio.com"
+});
 
 
 exports.sendFancyMessage = functions.https.onRequest((req, res) => {
@@ -21,7 +25,7 @@ exports.sendFancyMessage = functions.https.onRequest((req, res) => {
         return  admin.messaging().send(message)
                 .then((response) => {
                     console.log('Successfully sent message:', response);
-                    return res.json(202,{ message:"Successfully sent message" })
+                    return res.json(202,{ message:"Successfully sent message",response })
                 })
                 .catch((error) => {
                     console.log('Error sending message:', error);
